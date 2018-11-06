@@ -2,12 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_rewards"
+            android:icon="@drawable/ic_menu_rewards"
             android:title="Rewards" />
         <item
+            android:id="@+id/nav_coupons"
+            android:icon="@drawable/ic_menu_coupons"
             android:title="Coupons" />
         <item
+            android:id="@+id/nav_nearby_stores"
+            android:icon="@drawable/ic_menu_stores"
             android:title="Nearby Stores" />
         <item
+            android:id="@+id/nav_my_account"
+            android:icon="@drawable/ic_menu_account"
             android:title="My Account" />
     </group>
 </menu>
