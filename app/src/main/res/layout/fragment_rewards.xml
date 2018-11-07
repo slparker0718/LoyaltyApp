@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@color/colorPrimary">
+
+
+        <TextView
+            android:id="@+id/textGrid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="499"
+            android:textColor="@color/white"
+            android:textSize="48sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="130dp"
+            android:layout_height="26dp"
+            android:layout_alignBottom="@+id/textGrid"
+            android:layout_marginStart="147dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="144dp"
+            android:layout_marginBottom="1dp"
+            android:text="loyalty points"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gridView"
+        android:numColumns="5"
+        android:layout_weight="8"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:verticalSpacing="16dp"
+        android:padding="40dp"
+        android:background="@color/white">
+    </GridView>
+
+</LinearLayout>
