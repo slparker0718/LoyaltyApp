@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
+
                             startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
                             //updateUI(user);
                         } else {
