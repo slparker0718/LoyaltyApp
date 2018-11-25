@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">LoyaltyApp</string>
+    <string name="editText_firstName">First Name</string>
+    <string name="editText_lastName">Last Name</string>
+    <string name="editText_username">Username</string>
+    <string name="editText_password">Password</string>
+    <string name="editText_emailAddress">Email Address</string>
+    <string name="button_signUp">Sign Up</string>
+    <string name="button_createAccount">Create Account</string>
+    <string name="toast_signUpSuccess">Successfully created account.</string>
+    <string name="toast_signUpFailed">Failed to create account. Please try again.</string>
+    <string name="editText_loginEmailAddress">Email Address</string>
+    <string name="editText_loginPassword">Password</string>
+    <string name="toast_loginFailure">Failed to login. Please try again.</string>
 </resources>
