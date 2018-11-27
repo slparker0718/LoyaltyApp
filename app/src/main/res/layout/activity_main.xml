@@ -25,18 +25,18 @@
         app:layout_constraintVertical_bias="0.425">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editText_loginEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/textview_borders"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Username"
+            android:text="@string/editText_loginEmailAddress"
             android:textAlignment="center"
             android:visibility="visible" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editText_loginPassword"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginTop="5dp"
@@ -45,7 +45,7 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
-            android:text="Password"
+            android:text="@string/editText_loginPassword"
             android:textAlignment="center"
             android:visibility="visible"
             tools:text="Password" />
@@ -60,36 +60,33 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/button_CreateAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="156dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="60dp"
         android:background="@color/colorPrimary"
-        android:text="Sign Up"
+        android:text="@string/button_createAccount"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/divider"
-        app:layout_constraintVertical_bias="0.212" />
+        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="332dp"
-        android:layout_height="3dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="29dp"
-        android:layout_marginBottom="46dp"
-        android:background="@color/colorPrimary"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="157dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_CreateAccount"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>
