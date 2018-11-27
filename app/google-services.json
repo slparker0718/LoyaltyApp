@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "183645270021",
+    "firebase_url": "https://loyaltyproject-moyer-parker.firebaseio.com",
+    "project_id": "loyaltyproject-moyer-parker",
+    "storage_bucket": "loyaltyproject-moyer-parker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183645270021:android:f4a50a50d97d5ef4",
+        "android_client_info": {
+          "package_name": "edu.psu.slparker.loyaltyapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "183645270021-q52q8n3tkl5pv14g4smmim91mkho2r1l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeE5aefyrFuHfgKeN5k-RNXuoAA0d4UV8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
