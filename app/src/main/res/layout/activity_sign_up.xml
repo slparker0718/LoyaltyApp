@@ -38,7 +38,9 @@
             android:background="@drawable/textview_borders"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/editText_firstName" />
+            android:hint="@string/editText_firstName"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
 
         <EditText
             android:id="@+id/editText_LastName"
@@ -48,7 +50,9 @@
             android:background="@drawable/textview_borders"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/editText_lastName" />
+            android:hint="@string/editText_lastName"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
 
         <EditText
             android:id="@+id/editText_Username"
@@ -58,7 +62,9 @@
             android:background="@drawable/textview_borders"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/editText_username" />
+            android:hint="@string/editText_username"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
 
         <EditText
             android:id="@+id/editText_Password"
@@ -68,7 +74,9 @@
             android:background="@drawable/textview_borders"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/editText_password" />
+            android:hint="@string/editText_password"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
 
         <EditText
             android:id="@+id/editText_EmailAddress"
@@ -78,7 +86,9 @@
             android:background="@drawable/textview_borders"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/editText_emailAddress" />
+            android:hint="@string/editText_emailAddress"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
 
         <Button
             android:id="@+id/button_SignUpSubmit"
@@ -87,6 +97,8 @@
             android:layout_marginTop="25dp"
             android:background="@color/colorPrimary"
             android:text="@string/button_signUp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:textColor="@color/white" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

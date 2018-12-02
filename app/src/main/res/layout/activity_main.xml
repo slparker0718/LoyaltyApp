@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="263dp"
-        android:layout_height="160dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="89dp"
         android:layout_marginTop="133dp"
         android:layout_marginEnd="63dp"
@@ -31,7 +31,7 @@
             android:background="@drawable/textview_borders"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/editText_loginEmailAddress"
+            android:hint="@string/editText_loginEmailAddress"
             android:textAlignment="center"
             android:visibility="visible" />
 
@@ -43,9 +43,8 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/textview_borders"
             android:ems="10"
-            android:hint="Password"
             android:inputType="textPassword"
-            android:text="@string/editText_loginPassword"
+            android:hint="@string/editText_loginPassword"
             android:textAlignment="center"
             android:visibility="visible"
             tools:text="Password" />
@@ -56,37 +55,36 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:text="Login"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <Button
+            android:id="@+id/button_CreateAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="@string/button_createAccount"
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="10dp"/>
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/button_CreateAccount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            android:layout_marginRight="45dp"
+            android:layout_marginLeft="45dp"/>
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button_CreateAccount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="60dp"
-        android:background="@color/colorPrimary"
-        android:text="@string/button_createAccount"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.008"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="157dp"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_CreateAccount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0" />
+
+
 
 </android.support.constraint.ConstraintLayout>
