@@ -25,6 +25,15 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.List;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText editText_loginPassword;
     private static int RC_SIGN_IN = 100;
     private String TAG = "MainActivity";
+    private DatabaseReference mDatabase;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+    private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -132,6 +143,10 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
 
+                            firebaseAuth = FirebaseAuth.getInstance();
+                            String uid = firebaseAuth.getCurrentUser().getUid();
+                            checkFirebaseForGoogleCredentials(uid, acct.getEmail());
+
                             startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
                             //updateUI(user);
                         } else {
@@ -141,6 +156,36 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void checkFirebaseForGoogleCredentials(final String uid, final String email) {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        ValueEventListener listener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot facebookSnapshot: dataSnapshot.getChildren()) {
+                    if(facebookSnapshot.getKey() == uid) {
+                        Intent intent = new Intent(MainActivity.this, WelcomeActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(MainActivity.this, GoogleSignInActivity.class);
+                        intent.putExtra("UID", uid);
+                        intent.putExtra("EMAIL_ADDRESS", email);
+                        startActivity(intent);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        };
+        mDatabase.child("users").addListenerForSingleValueEvent(listener);
     }
 
     private void authenticateUser()
