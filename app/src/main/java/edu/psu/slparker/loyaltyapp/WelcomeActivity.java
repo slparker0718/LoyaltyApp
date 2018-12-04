@@ -12,10 +12,13 @@ import android.view.MenuItem;
 public class WelcomeActivity extends AppCompatActivity {
     private DrawerLayout DrawerLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+
 
         DrawerLayout = findViewById(R.id.drawer_layout);
 

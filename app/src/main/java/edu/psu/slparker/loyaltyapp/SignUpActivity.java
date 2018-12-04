@@ -18,6 +18,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -29,6 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
     private Button button_signUpSubmit;
     private FirebaseAuth firebaseAuth;
     private final String TAG = "SignUpActivity";
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,36 +56,45 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                AddUserToFirebase();
+                addUserToFirebase();
             }
         });
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
-    private void AddUserToFirebase()
+    private void addUserToFirebase()
     {
+
+
         firebaseAuth.createUserWithEmailAndPassword(editText_emailAddress.getText().toString(), editText_password.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(editText_firstName.getText().toString() + " " + editText_lastName.getText().toString()).build();
-                            user.updateProfile(profileUpdates)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            if (task.isSuccessful()) {
-                                                startActivity(new Intent(SignUpActivity.this, WelcomeActivity.class));
-                                                Toast.makeText(getApplicationContext(), getString(R.string.toast_signUpSuccess), Toast.LENGTH_LONG).show();
-                                            }
-                                        }
-                                    });
+
+                            storeUserInfo(user.getUid());
+
+                            startActivity(new Intent(SignUpActivity.this, WelcomeActivity.class));
+                            Toast.makeText(getApplicationContext(), getString(R.string.toast_signUpSuccess), Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(getApplicationContext(), getString(R.string.toast_signUpFailed),
                                     Toast.LENGTH_LONG).show();
                         }
                     }
                 });
+    }
+
+    private void storeUserInfo(String uid) {
+        User user = new User(editText_firstName.getText().toString(),
+                editText_lastName.getText().toString(),
+                editText_userName.getText().toString(),
+                editText_emailAddress.getText().toString(),
+                0,
+                0,
+                new ArrayList<String>());
+
+        mDatabase.child("users").child(uid).setValue(user);
     }
 }

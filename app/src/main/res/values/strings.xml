@@ -12,6 +12,4 @@
     <string name="editText_loginEmailAddress">Email Address</string>
     <string name="editText_loginPassword">Password</string>
     <string name="toast_loginFailure">Failed to login. Please try again.</string>
-    <string name="textView_emailPrefix">\@</string>
-    <string name="textView_welcomeUser">Welcome</string>
 </resources>
