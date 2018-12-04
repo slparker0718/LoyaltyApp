@@ -174,7 +174,7 @@ public class FragmentStores extends Fragment implements OnMapReadyCallback {
                 JSONObject jsonObject = results.getJSONObject(i).getJSONObject("geometry").getJSONObject("location");
                 double latitude = jsonObject.getDouble("lat");
                 double longitude = jsonObject.getDouble("lng");
-                String title = results.getJSONObject(i).getString("name");
+                String title = results.getJSONObject(i).getString("formatted_address");
 
                 LatLng latLng = new LatLng(latitude, longitude);
                 gMap.addMarker(new MarkerOptions().position(latLng).title(title));
