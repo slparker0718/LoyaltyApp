@@ -54,38 +54,96 @@
             app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/avatar" />
 
-        <TextView
-            android:id="@+id/textView_welcomeUser"
-            android:layout_width="300dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="101dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="101dp"
-            android:layout_marginBottom="348dp"
-            android:text="@string/textView_welcomeUser"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_userEmailAddress"
-            app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/textView_userEmailAddress"
-            android:layout_width="200dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="147dp"
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="144dp"
-            android:text="@string/textView_emailPrefix"
-            android:textAlignment="center"
-            android:textColor="@color/white"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView3">
+
+            <TextView
+                android:id="@+id/textView_userFirstNameLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/editText_firstName"
+                android:textAlignment="center"
+                android:textColor="@color/lightGray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView_userFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/textView_userLastNameLabel"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="@string/editText_lastName"
+                android:textColor="@color/lightGray"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/textView_userLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/textView_userEmailAddressLabel"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="@string/editText_emailAddress"
+                android:textColor="@color/lightGray"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/textView_userEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/textView_userUsernameLabel"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:text="@string/editText_username"
+                android:textColor="@color/lightGray"
+                android:textAlignment="center"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/textView_userUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="20sp"/>
+
+
+        </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
 
