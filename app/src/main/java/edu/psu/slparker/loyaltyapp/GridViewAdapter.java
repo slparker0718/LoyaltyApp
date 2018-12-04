@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 public class GridViewAdapter extends BaseAdapter {
+    int filledStars;
     Context mContext;
 
     @Override
@@ -35,8 +36,13 @@ public class GridViewAdapter extends BaseAdapter {
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
             imageView.setPadding(8, 8, 8, 8);
-            imageView.setImageResource(R.drawable.ic_menu_rewards);
             imageView.setBackgroundColor(Color.WHITE);
+
+            if(position < filledStars) {
+                imageView.setImageResource(R.drawable.ic_menu_rewards);
+            } else {
+                imageView.setImageResource(R.drawable.ic_rewards_outline);
+            }
         } else {
             imageView = (ImageView) convertView;
         }
