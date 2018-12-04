@@ -2,6 +2,8 @@ package edu.psu.slparker.loyaltyapp;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -16,13 +18,24 @@ import com.google.android.gms.nearby.messages.Message;
 import com.google.android.gms.nearby.messages.MessageListener;
 import com.google.android.gms.nearby.messages.Strategy;
 import com.google.android.gms.nearby.messages.SubscribeOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 
 public class WelcomeActivity extends AppCompatActivity {
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference mDatabase;
+    private User user;
     private DrawerLayout DrawerLayout;
     private final String TAG = "WELCOME";
     private MessageListener mMessageListener;
     private NotificationBroadcastReceiver notificationBroadcastReceiver;
     private IntentFilter intentFilter;
+    private String uid;
 
     @Override
     protected void onStart()
@@ -44,6 +57,11 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        uid = firebaseAuth.getCurrentUser().getUid();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         mMessageListener = new MessageListener() {
             @Override
             public void onFound(Message message) {
@@ -53,6 +71,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 switch (label) {
                     case "coupons":
+                        addLoyaltyPoints(mDatabase, uid);
                         Intent broadcastIntent2 = new Intent(WelcomeActivity.this, NotificationBroadcastReceiver.class);
                         broadcastIntent2.putExtra("ID", 2);
                         broadcastIntent2.putExtra("NOTIFICATION_TYPE", "coupon");
@@ -148,5 +167,23 @@ public class WelcomeActivity extends AppCompatActivity {
                 .setStrategy(Strategy.BLE_ONLY)
                 .build();
         Nearby.getMessagesClient(this).subscribe(mMessageListener, options);
+    }
+
+    private void addLoyaltyPoints(DatabaseReference ref, String userId) {
+        ref.child("users").child(userId).child("loyaltyPoints").runTransaction(new Transaction.Handler() {
+            @NonNull
+            @Override
+            public Transaction.Result doTransaction(@NonNull MutableData mutableData) {
+                Long points = mutableData.getValue(Long.class);
+                int updatedPoints = points.intValue() + 5;
+                mutableData.setValue(updatedPoints);
+                return Transaction.success(mutableData);
+            }
+
+            @Override
+            public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+
+            }
+        });
     }
 }
