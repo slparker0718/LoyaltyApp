@@ -1,5 +1,6 @@
 package edu.psu.slparker.loyaltyapp;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -20,7 +21,21 @@ public class WelcomeActivity extends AppCompatActivity {
 
 
         DrawerLayout = findViewById(R.id.drawer_layout);
-        displaySelectedScreen(R.id.nav_rewards);
+
+        String notifKey = getIntent().getStringExtra("NOTIF_KEY");
+        if (notifKey != null && notifKey.equals("Coupon"))
+        {
+            displaySelectedScreen(R.id.nav_coupons);
+        }
+        else if (notifKey != null && notifKey.equals("NearbyStore"))
+        {
+            displaySelectedScreen(R.id.nav_nearby_stores);
+        }
+        else
+        {
+            displaySelectedScreen(R.id.nav_rewards);
+
+        }
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(

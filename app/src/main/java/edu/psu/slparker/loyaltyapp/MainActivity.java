@@ -1,6 +1,8 @@
 package edu.psu.slparker.loyaltyapp;
 
+import android.app.Notification;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,6 +37,22 @@ public class MainActivity extends AppCompatActivity {
     private EditText editText_loginPassword;
     private static int RC_SIGN_IN = 100;
     private String TAG = "MainActivity";
+    private NotificationBroadcastReceiver notificationBroadcastReceiver;
+    private IntentFilter intentFilter;
+
+
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        registerReceiver(notificationBroadcastReceiver, intentFilter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(notificationBroadcastReceiver);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +97,23 @@ public class MainActivity extends AppCompatActivity {
                 signInWithGoogle();
             }
         });
+
+
+        // START: Move this logic to activity wherever we check for beacon signal
+        // NOTE: There are two methods above, onStart and onStop, we want to move these to the activity the beacon check is in as well.
+        intentFilter = new IntentFilter("edu.psu.slparker.loyaltyapp.action.NotificationBroadcastReceiver");
+        notificationBroadcastReceiver  = new NotificationBroadcastReceiver();
+
+        Intent broadcastIntent = new Intent(MainActivity.this, NotificationBroadcastReceiver.class);
+        broadcastIntent.putExtra("ID", 1);
+        broadcastIntent.putExtra("NOTIFICATION_TYPE", "nearbyStore");
+        sendBroadcast(broadcastIntent);
+
+        Intent broadcastIntent2 = new Intent(MainActivity.this, NotificationBroadcastReceiver.class);
+        broadcastIntent2.putExtra("ID", 2);
+        broadcastIntent2.putExtra("NOTIFICATION_TYPE", "coupon");
+        sendBroadcast(broadcastIntent2);
+        // END
     }
 
     private void signInWithGoogle()
